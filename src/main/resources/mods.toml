@@ -1,0 +1,36 @@
+modLoader = 'javafml'
+loaderVersion = '[36,)'
+license = 'MIT'
+issueTrackerURL = 'https://github.com/necauqua/cell-lever/issues'
+
+[[mods]]
+modId = 'cell_lever'
+version = '${file.jarVersion}'
+displayName = 'Cell Lever'
+updateJSONURL = 'https://raw.githubusercontent.com/wiki/necauqua/cell-lever/updates.json'
+displayURL = 'https://www.curseforge.com/minecraft/mc-mods/cell-lever'
+logoFile = 'logo.png'
+credits = '''
+People from my discord who keep me entertained and remind me to have an above-zero level of productivity.
+
+amadornes for his cool SCM mod
+'''
+authors = 'necauqua'
+description = '''
+This is a mod that adds another type of levers.
+Instead of outputting a redstone signal from each side of the lever block they only output signal from the short sides.
+On the long sides, they accept redstone input - and they get toggled when they receive such a signal.
+This is inspired by the SCM mod made by amadornes, where tiny levers on circuits have similar behavior.
+'''
+[[dependencies.cell_lever]]
+modId = 'forge'
+mandatory = true
+versionRange = '[36,)'
+ordering = 'NONE'
+side = 'BOTH'
+[[dependencies.cell_lever]]
+modId = 'minecraft'
+mandatory = true
+versionRange = '[1.16,1.17)'
+ordering = 'NONE'
+side = 'BOTH'

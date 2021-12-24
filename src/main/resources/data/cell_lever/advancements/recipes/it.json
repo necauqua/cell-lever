@@ -1,0 +1,42 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "cell_lever:it"
+    ]
+  },
+  "criteria": {
+    "has_lever": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:inverted",
+            "term": {
+              "condition": "cell_lever:replace_vanilla"
+            }
+          }
+        ],
+        "items": [
+          {
+            "items": [
+              "minecraft:lever"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "cell_lever:it"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_lever",
+      "has_the_recipe"
+    ]
+  ]
+}

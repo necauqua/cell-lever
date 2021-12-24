@@ -1,0 +1,12 @@
+name: Push to main
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+jobs:
+  Mod:
+    uses: necauqua/mcmod-workflow/.github/workflows/push-to-main.yml@main
+    with:
+      archive-name: cell-lever

@@ -1,0 +1,18 @@
+{
+  "type": "cell_lever:shapeless_optional",
+  "__comment": "Identical to shapeless except it never matches if replace_vanilla_lever = true on the save/server you connect to",
+  "ingredients": [
+    {
+      "item": "minecraft:lever"
+    },
+    {
+      "item": "minecraft:slime_ball"
+    },
+    {
+      "item": "minecraft:redstone"
+    }
+  ],
+  "result": {
+    "item": "cell_lever:it"
+  }
+}
