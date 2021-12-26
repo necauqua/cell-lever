@@ -49,7 +49,7 @@ public final class CellLeverBlock extends LeverBlock {
     }
 
     @Override
-    public ItemStack getPickBlock(BlockState state, HitResult target, BlockGetter world, BlockPos pos, Player player) {
+    public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter world, BlockPos pos, Player player) {
         return new ItemStack(CellLever.REPLACE_VANILLA_LEVER.get() ? Blocks.LEVER : this);
     }
 
