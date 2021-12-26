@@ -1,14 +1,14 @@
 package dev.necauqua.mods.cl;
 
 import com.google.gson.JsonObject;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.ShapelessRecipe;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
+import net.minecraft.core.NonNullList;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.ShapelessRecipe;
+import net.minecraft.world.level.Level;
 
 import static dev.necauqua.mods.cl.CellLever.ns;
 
@@ -19,8 +19,8 @@ public final class ConditionalShapelessRecipe extends ShapelessRecipe {
     }
 
     @Override
-    public boolean matches(CraftingInventory grid, World world) {
-        return !CellLever.REPLACE_VANILLA_LEVER.get() && super.matches(grid, world);
+    public boolean matches(CraftingContainer grid, Level level) {
+        return !CellLever.REPLACE_VANILLA_LEVER.get() && super.matches(grid, level);
     }
 
     public static final class Serializer extends ShapelessRecipe.Serializer {
@@ -33,19 +33,19 @@ public final class ConditionalShapelessRecipe extends ShapelessRecipe {
 
         @Override
         public ConditionalShapelessRecipe fromJson(ResourceLocation id, JsonObject json) {
-            ShapelessRecipe recipe = super.fromJson(id, json);
+            var recipe = super.fromJson(id, json);
             return new ConditionalShapelessRecipe(id, recipe.getGroup(), recipe.getResultItem(), recipe.getIngredients());
         }
 
         @SuppressWarnings("ConstantConditions") // recipe is never null
         @Override
-        public ConditionalShapelessRecipe fromNetwork(ResourceLocation id, PacketBuffer payload) {
-            ShapelessRecipe recipe = super.fromNetwork(id, payload);
+        public ConditionalShapelessRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf payload) {
+            var recipe = super.fromNetwork(id, payload);
             return new ConditionalShapelessRecipe(id, recipe.getGroup(), recipe.getResultItem(), recipe.getIngredients());
         }
 
         @Override
-        public void toNetwork(PacketBuffer payload, ShapelessRecipe id) {
+        public void toNetwork(FriendlyByteBuf payload, ShapelessRecipe id) {
             super.toNetwork(payload, id);
         }
     }

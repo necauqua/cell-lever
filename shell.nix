@@ -2,5 +2,5 @@ let
   pkgs = import <nixpkgs> {};
 in
   pkgs.mkShell {
-    buildInputs = [ pkgs.jdk8 ];
+    buildInputs = [ pkgs.adoptopenjdk-hotspot-bin-16 ];
   }

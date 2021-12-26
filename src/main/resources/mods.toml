@@ -1,5 +1,5 @@
 modLoader = 'javafml'
-loaderVersion = '[36,)'
+loaderVersion = '[37,)'
 license = 'MIT'
 issueTrackerURL = 'https://github.com/necauqua/cell-lever/issues'
 
@@ -25,12 +25,12 @@ This is inspired by the SCM mod made by amadornes, where tiny levers on circuits
 [[dependencies.cell_lever]]
 modId = 'forge'
 mandatory = true
-versionRange = '[36,)'
+versionRange = '[37,)'
 ordering = 'NONE'
 side = 'BOTH'
 [[dependencies.cell_lever]]
 modId = 'minecraft'
 mandatory = true
-versionRange = '[1.16,1.17)'
+versionRange = '[1.17,1.18)'
 ordering = 'NONE'
 side = 'BOTH'

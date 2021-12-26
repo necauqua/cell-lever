@@ -1,12 +1,12 @@
 package dev.necauqua.mods.cl;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.event.RegistryEvent;
@@ -15,8 +15,8 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
-import net.minecraftforge.fml.config.ModConfig.ModConfigEvent;
 import net.minecraftforge.fml.config.ModConfig.Type;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -50,7 +50,7 @@ public final class CellLever {
     }
 
     @SubscribeEvent
-    public static void registerRecipe(RegistryEvent.Register<IRecipeSerializer<?>> e) {
+    public static void registerRecipe(RegistryEvent.Register<RecipeSerializer<?>> e) {
         e.getRegistry().register(ConditionalShapelessRecipe.Serializer.INSTANCE);
     }
 
@@ -62,8 +62,7 @@ public final class CellLever {
     @SuppressWarnings("deprecation")
     @SubscribeEvent
     public static void on(ModConfigEvent e) {
-        BlockItem leverItem = (BlockItem) Items.LEVER;
-
+        var leverItem = (BlockItem) Items.LEVER;
         if (REPLACE_VANILLA_LEVER.get()) {
             LOGGER.info("Setting vanilla lever item to place cell levers");
             leverItem.block = BLOCK;

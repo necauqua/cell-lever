@@ -1,24 +1,28 @@
 package dev.necauqua.mods.cl;
 
 import com.google.common.collect.ImmutableSet;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.LeverBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.StateContainer.Builder;
-import net.minecraft.state.properties.AttachFace;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LeverBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition.Builder;
+import net.minecraft.world.level.block.state.properties.AttachFace;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.HitResult;
 
 import java.util.Collection;
 
 import static dev.necauqua.mods.cl.CellLever.ns;
-import static net.minecraft.state.properties.BlockStateProperties.ATTACH_FACE;
-import static net.minecraft.state.properties.BlockStateProperties.HORIZONTAL_FACING;
+import static net.minecraft.world.level.block.state.properties.BlockStateProperties.ATTACH_FACE;
+import static net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING;
 
 public final class CellLeverBlock extends LeverBlock {
 
@@ -44,21 +48,26 @@ public final class CellLeverBlock extends LeverBlock {
             "block.cell_lever:it.name";
     }
 
+    @Override
+    public ItemStack getPickBlock(BlockState state, HitResult target, BlockGetter world, BlockPos pos, Player player) {
+        return new ItemStack(CellLever.REPLACE_VANILLA_LEVER.get() ? Blocks.LEVER : this);
+    }
+
     @SuppressWarnings("deprecation")
     @Override
-    public void neighborChanged(BlockState state, World level, BlockPos pos, Block block, BlockPos pos2, boolean flag) {
+    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos pos2, boolean flag) {
         if (level.isClientSide) {
             return;
         }
         boolean hasSignal;
         if (state.getValue(ATTACH_FACE) == AttachFace.WALL) {
-            Direction dir = state.getValue(HORIZONTAL_FACING);
-            Direction left = dir.getCounterClockWise();
-            Direction right = dir.getClockWise();
+            var dir = state.getValue(HORIZONTAL_FACING);
+            var left = dir.getCounterClockWise();
+            var right = dir.getClockWise();
             hasSignal = level.getSignal(pos.relative(dir), dir) > 0 || level.getSignal(pos.relative(left), left) > 0 || level.getSignal(pos.relative(right), right) > 0;
         } else {
-            Direction side = state.getValue(HORIZONTAL_FACING).getClockWise();
-            Direction otherSide = side.getOpposite();
+            var side = state.getValue(HORIZONTAL_FACING).getClockWise();
+            var otherSide = side.getOpposite();
             hasSignal = level.getSignal(pos.relative(side), side) > 0 || level.getSignal(pos.relative(otherSide), otherSide) > 0;
         }
 
@@ -71,7 +80,7 @@ public final class CellLeverBlock extends LeverBlock {
     }
 
     @Override
-    public int getSignal(BlockState state, IBlockReader blockReader, BlockPos pos, Direction dir) {
+    public int getSignal(BlockState state, BlockGetter blockReader, BlockPos pos, Direction dir) {
         if (state.getValue(ATTACH_FACE) == AttachFace.WALL || state.getValue(HORIZONTAL_FACING).getAxis() != dir.getAxis()) {
             return 0;
         }
@@ -80,8 +89,7 @@ public final class CellLeverBlock extends LeverBlock {
 
     @Override
     protected void createBlockStateDefinition(Builder<Block, BlockState> builder) {
-        super.createBlockStateDefinition(builder);
-        builder.add(PREV_INPUT);
+        super.createBlockStateDefinition(builder.add(PREV_INPUT));
     }
 }
 
