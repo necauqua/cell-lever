@@ -1,9 +1,9 @@
 package dev.necauqua.mods.cl;
 
 import dev.necauqua.mods.cl.ReplaceVanillaCondition.Serializer;
-import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
+import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -39,7 +40,7 @@ public final class CellLever {
     private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
     private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
     private static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, MODID);
-    private static final DeferredRegister<LootItemConditionType> LOOT_ITEMS = DeferredRegister.create(Registry.LOOT_ITEM_REGISTRY, MODID);
+    private static final DeferredRegister<LootItemConditionType> LOOT_ITEMS = DeferredRegister.create(Registries.LOOT_CONDITION_TYPE, MODID);
 
     public static final RegistryObject<CellLeverBlock> BLOCK = BLOCKS.register("it", CellLeverBlock::new);
     public static final RegistryObject<LootItemConditionType> REPLACE_VANILLA_TYPE = LOOT_ITEMS.register("replace_vanilla", () -> new LootItemConditionType(Serializer.INSTANCE));
@@ -61,7 +62,13 @@ public final class CellLever {
         ITEMS.register(bus);
         RECIPE_SERIALIZERS.register(bus);
         LOOT_ITEMS.register(bus);
-        ReplaceVanillaCondition.init();
+    }
+
+    @SubscribeEvent
+    public static void on(CreativeModeTabEvent.BuildContents e) {
+        if (e.getTab() == CreativeModeTabs.REDSTONE_BLOCKS && !CellLever.REPLACE_VANILLA_LEVER.get()) {
+            e.accept(BLOCK);
+        }
     }
 
     @SuppressWarnings("deprecation")
@@ -75,9 +82,7 @@ public final class CellLever {
             LOGGER.info("Resetting vanilla lever back to placing vanilla levers");
             leverItem.block = Blocks.LEVER;
         }
-    }
-
-    public static ResourceLocation ns(String name) {
-        return new ResourceLocation(MODID, name);
+        CreativeModeTabs.CACHED_ENABLED_FEATURES = null;
+        // ^ this will cause creative tabs to rebuild once, by the creative screen
     }
 }

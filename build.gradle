@@ -12,8 +12,8 @@ apply plugin: 'dev.necauqua.nmod'
 nmod {
     curseID = '558815'
     modrinthID = '4Av0rHiv'
-    mcversion = '1.18.*'
-    forge = '1.18.2-40.2.0'
-    mappings = '1.18.2'
+    mcversion = '1.19.*'
+    forge = '1.19.3-44.1.0'
+    mappings = '1.19.3'
     javaVersion = 17
 }

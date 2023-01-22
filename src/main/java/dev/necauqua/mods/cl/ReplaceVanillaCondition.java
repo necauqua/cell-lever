@@ -11,10 +11,6 @@ public final class ReplaceVanillaCondition implements LootItemCondition {
 
     private static final ReplaceVanillaCondition INSTANCE = new ReplaceVanillaCondition();
 
-    public static void init() {
-        // just trigger the static init lul
-    }
-
     private ReplaceVanillaCondition() {}
 
     @Override

@@ -2,10 +2,12 @@ package dev.necauqua.mods.cl;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -15,15 +17,10 @@ import java.util.UUID;
 public final class CellLeverBlockItem extends BlockItem {
 
     private static final UUID SPECIAL = new UUID(0x5a8c3be32aa44e91L, 0x8d7f4e7b0dc8223eL); // amadornes
-    private static final Component SPECIAL_NAME = new TextComponent("Flippin' Lever");
+    private static final Component SPECIAL_NAME = Component.literal("Flippin' Lever");
 
     public CellLeverBlockItem() {
-        super(CellLever.BLOCK.get(), new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE));
-    }
-
-    @Override
-    protected boolean allowdedIn(CreativeModeTab itemGroup) {
-        return !CellLever.REPLACE_VANILLA_LEVER.get() && super.allowdedIn(itemGroup);
+        super(CellLever.BLOCK.get(), new Item.Properties());
     }
 
     @Override
