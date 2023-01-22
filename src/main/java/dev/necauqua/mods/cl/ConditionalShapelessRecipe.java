@@ -10,8 +10,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.ShapelessRecipe;
 import net.minecraft.world.level.Level;
 
-import static dev.necauqua.mods.cl.CellLever.ns;
-
 public final class ConditionalShapelessRecipe extends ShapelessRecipe {
 
     public ConditionalShapelessRecipe(ResourceLocation id, String group, ItemStack result, NonNullList<Ingredient> ingredients) {
@@ -24,12 +22,6 @@ public final class ConditionalShapelessRecipe extends ShapelessRecipe {
     }
 
     public static final class Serializer extends ShapelessRecipe.Serializer {
-
-        public static final Serializer INSTANCE = new Serializer();
-
-        private Serializer() {
-            setRegistryName(ns("shapeless_optional"));
-        }
 
         @Override
         public ConditionalShapelessRecipe fromJson(ResourceLocation id, JsonObject json) {

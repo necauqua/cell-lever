@@ -20,7 +20,6 @@ import net.minecraft.world.phys.HitResult;
 
 import java.util.Collection;
 
-import static dev.necauqua.mods.cl.CellLever.ns;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.ATTACH_FACE;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING;
 
@@ -38,7 +37,6 @@ public final class CellLeverBlock extends LeverBlock {
 
     public CellLeverBlock() {
         super(Properties.of(Material.DECORATION).noCollission().strength(0.5F).sound(SoundType.WOOD));
-        setRegistryName(ns("it"));
     }
 
     @Override

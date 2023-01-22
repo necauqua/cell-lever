@@ -5,8 +5,10 @@ on:
       - main
     paths:
       - 'src/**'
+      - 'build.gradle'
 jobs:
-  Mod:
+  mcmod-workflow:
     uses: necauqua/mcmod-workflow/.github/workflows/push-to-main.yml@main
-    with:
-      archive-name: cell-lever
+    secrets:
+      KEYSTORE: ${{ secrets.KEYSTORE }}
+      GRADLE_PROPERTIES: ${{ secrets.GRADLE_PROPERTIES }}

@@ -8,7 +8,7 @@ modId = 'cell_lever'
 version = '${file.jarVersion}'
 displayName = 'Cell Lever'
 updateJSONURL = 'https://raw.githubusercontent.com/wiki/necauqua/cell-lever/updates.json'
-displayURL = 'https://www.curseforge.com/minecraft/mc-mods/cell-lever'
+displayURL = 'https://modrinth.com/mod/cell-lever'
 logoFile = 'logo.png'
 credits = '''
 People from my discord who keep me entertained and remind me to have an above-zero level of productivity.

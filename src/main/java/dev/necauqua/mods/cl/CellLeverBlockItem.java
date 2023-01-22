@@ -18,8 +18,7 @@ public final class CellLeverBlockItem extends BlockItem {
     private static final Component SPECIAL_NAME = new TextComponent("Flippin' Lever");
 
     public CellLeverBlockItem() {
-        super(CellLever.BLOCK, new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE));
-        setRegistryName(CellLever.NAME);
+        super(CellLever.BLOCK.get(), new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE));
     }
 
     @Override

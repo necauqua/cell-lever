@@ -1,9 +1,12 @@
 # Cell Lever
 
-[![Downloads Number](http://cf.way2muchnoise.eu/short_cell-lever.svg?badge_style=flat)](https://www.curseforge.com/minecraft/mc-mods/cell-lever)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/necauqua/cell-lever/Push%20to%20main?style=flat-square)](https://github.com/necauqua/cell-lever/actions/workflows/push-to-main.yml)
+[![Modrinth Downloads](https://img.shields.io/modrinth/dt/cell-lever?logo=Modrinth&label=&color=2d2d2d&style=flat-square)](https://modrinth.com/mod/cell-lever)
+[![CurseForge Downloads](http://cf.way2muchnoise.eu/cell-lever.svg?badge_style=flat)](https://modrinth.com/mod/cell-lever)
 <br>
-[![Latest Release](https://img.shields.io/github/release/necauqua/cell-lever.svg?label=last%20release&style=flat-square)](https://www.curseforge.com/minecraft/mc-mods/cell-lever/files)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/necauqua/cell-lever/push-to-main.yml?branch=main&style=flat-square)](https://github.com/necauqua/cell-lever/actions/workflows/push-to-main.yml)
+[![Latest Release](https://img.shields.io/github/release/necauqua/cell-lever.svg?label=last%20release&lcolor=2d2d2d&style=flat-square)](https://modrinth.com/mod/cell-lever/version/latest)
+<br>
+[![Follow on Modrinth](https://img.shields.io/modrinth/followers/cell-lever?label=follow%20on%20Modrinth&style=social)](https://modrinth.com/mod/cell-lever)
 
 This is a Minecraft mod that adds another type of levers. Instead of outputting a redstone signal from each side of the
 lever block they only output signal from the short sides. On the long sides, they accept redstone input - and they get
@@ -14,7 +17,7 @@ This is inspired by the SCM mod made by amadornes, where tiny levers on circuits
 ## Installation
 
 Install Forge following their installation instructions,
-[download](https://www.curseforge.com/minecraft/mc-mods/cell-lever/files)
+[download](https://modrinth.com/mod/cell-lever)
 this mod jar file for your version of the game and place it into your 'mods' folder. When updating, be sure to remove
 the old version as well.
 
